@@ -1,12 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My QA Blog</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to my QA blog</h1>
-    <p>I write about Playwright, testing and CI/CD.</p>
-    <a class="btn">Read article</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">Olga</div>
+            <nav class="nav">
+                <a href="#about">About</a>
+                <a href="#featured">Featured Articles</a>
+                <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <p class="hero-label">QA Engineer</p>
+                <h1>QA Engineer writing about Playwright, testing and CI/CD</h1>
+                <p class="hero-text">
+                    I share practical notes on test automation, UI testing, debugging,
+                    and the tools I use in real work. This blog is my space to document
+                    ideas, approaches, and lessons learned along the way.
+                </p>
+                <div class="hero-buttons">
+                    <a class="btn btn-primary" href="#featured">Read articles</a>
+                    <a class="btn btn-secondary" href="#about">About me</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="container">
+                <h2>About</h2>
+                <p class="section-text">
+                    I am a QA Engineer focused on practical testing approaches and clear,
+                    reliable automation. I work with UI testing, Playwright, and CI/CD,
+                    and I enjoy turning real testing tasks into structured, repeatable solutions.
+                </p>
+
+                <div class="about-cards">
+                    <article class="info-card">
+                        <h3>UI Automation</h3>
+                        <p>
+                            Notes on building UI tests, keeping them maintainable,
+                            and making smoke coverage actually useful.
+                        </p>
+                    </article>
+
+                    <article class="info-card">
+                        <h3>CI/CD</h3>
+                        <p>
+                            Thoughts on running tests in pipelines, keeping checks simple,
+                            and making automation easier to use in daily work.
+                        </p>
+                    </article>
+
+                    <article class="info-card">
+                        <h3>Quality Practices</h3>
+                        <p>
+                            Reflections on testing strategy, debugging, and practical QA habits
+                            that help teams ship with more confidence.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured" id="featured">
+            <div class="container">
+                <h2>Featured Articles</h2>
+                <p class="section-text">
+                    A few topics I am working on now and planning to publish first.
+                </p>
+
+                <div class="articles-grid">
+                    <article class="article-card">
+                        <p class="article-tag">Playwright</p>
+                        <h3>Playwright Smoke Tests for CRM</h3>
+                        <p>
+                            A practical look at building a small smoke suite to verify
+                            that the CRM is alive and core pages respond correctly.
+                        </p>
+                        <a class="article-link" href="#">Coming soon</a>
+                    </article>
+
+                    <article class="article-card">
+                        <p class="article-tag">GitLab CI</p>
+                        <h3>Running UI Tests in GitLab CI</h3>
+                        <p>
+                            How manual pipeline runs can help QA engineers execute smoke checks
+                            quickly and keep testing closer to delivery.
+                        </p>
+                        <a class="article-link" href="#">Coming soon</a>
+                    </article>
+
+                    <article class="article-card">
+                        <p class="article-tag">Mocking</p>
+                        <h3>Mocking API Responses in Playwright</h3>
+                        <p>
+                            A simple way to test UI states by replacing backend responses
+                            and validating what users actually see on the page.
+                        </p>
+                        <a class="article-link" href="#">Coming soon</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© 2026 Olga QA Blog</p>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
