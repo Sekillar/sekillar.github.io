@@ -242,8 +242,9 @@ a {
 
 .profile-photo {
     width: 140px;
-    height: 180px;
+    height: 140px;
     object-fit: cover;
+    object-position: 50% 20%;;
     border-radius: 14px;
     border: 2px solid rgba(214,176,111,0.4);
 }
