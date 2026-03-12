@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mocking API Responses in Playwright | Olga’s QA Lab</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo"><a href="../index.html">Olga’s QA Lab</a></div>
+        <nav class="nav">
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#featured">Featured Articles</a>
+            <a href="https://www.linkedin.com/in/olgathebughunter/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Sekillar" target="_blank">GitHub</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="article-page">
+        <div class="container article-container">
+
+            <p class="article-meta">UI Automation · Playwright · Mocking</p>
+            <h1>Testing UI Number Formatting by Mocking Backend Responses with Playwright and Python</h1>
+
+            <p class="article-lead">
+                A practical approach to validating how UI displays numeric values by intercepting
+                backend responses and returning controlled test data.
+            </p>
+
+            <article class="blog-article">
+                <h2>Why mock backend responses?</h2>
+                <p>
+                    In many real-world scenarios, the backend returns valid data, but the real issue
+                    is how the frontend formats and displays that data to the user.
+                </p>
+
+                <p>
+                    For example, the backend may return <code>1000000</code>, while the CRM is expected
+                    to display <code>1M</code> in the interface. In this case, the goal is not to validate
+                    backend calculations, but to verify UI formatting logic.
+                </p>
+
+                <h2>Test idea</h2>
+                <p>
+                    Instead of depending on real backend data, the Playwright test intercepts the API request
+                    and returns a mocked JSON response. This makes it possible to validate edge cases,
+                    control input values, and check exactly what the UI renders.
+                </p>
+
+                <h2>Mocked response example</h2>
+                <pre><code>MOCK = {
+    "totalTopUps": 1010,
+    "totalRedemptions": 1499,
+    "totalPointsOutWithoutCommission": 1500,
+    "totalFLCommission": 535342.22,
+    "totalOutWithCommission": 1999,
+}</code></pre>
+
+                <h2>Intercepting the request</h2>
+                <pre><code>def handler(route):
+    route.fulfill(
+        status=200,
+        content_type="application/json",
+        body=json.dumps(MOCK),
+    )
+
+page.route("**/api/loyalty/rewards/charges/summary*", handler)</code></pre>
+
+                <h2>UI assertions</h2>
+                <p>
+                    The key part of this test is not only mocking the response, but also validating
+                    that the expected formatted value appears in the correct UI field.
+                </p>
+
+                <pre><code>assert page.locator("[data-testid='total-top-ups']").inner_text() == "1K"</code></pre>
+
+                <h2>Test design techniques</h2>
+                <p>
+                    To generate useful test cases for numeric formatting, I would use Boundary Value Analysis
+                    and Equivalence Class Partitioning. These techniques help cover display rules around
+                    transitions such as 999 → 1K and 999999 → 1M.
+                </p>
+
+                <h2>What comes next</h2>
+                <p>
+                    In a separate article, I will describe how to integrate this type of Playwright test
+                    into CI so that UI checks can be executed automatically in a pipeline.
+                </p>
+            </article>
+
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>© 2026 Olga’s QA Lab</p>
+        <div class="footer-links">
+            <a href="mailto:olgasilanova@gmail.com">olgasilanova@gmail.com</a>
+            <a href="https://www.linkedin.com/in/olgathebughunter/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Sekillar" target="_blank">GitHub</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
