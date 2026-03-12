@@ -92,11 +92,9 @@ page.route("**/api/loyalty/rewards/charges/summary*", handler)</code></pre>
                     expected formatted values in the corresponding fields.
                     </p>
                     
-                    <pre><code>
-                    assert page.locator("[data-testid='total-top-ups']").inner_text() == "1K"
-                    assert page.locator("[data-testid='total-redemptions']").inner_text() == "1.4K"
-                    assert page.locator("[data-testid='total-out-with-commission']").inner_text() == "2K"
-                    </code></pre>
+                    <pre><code>assert page.locator("[data-testid='total-top-ups']").inner_text() == "1K"
+assert page.locator("[data-testid='total-redemptions']").inner_text() == "1.4K"
+assert page.locator("[data-testid='total-out-with-commission']").inner_text() == "2K"</code></pre>
                     
                     <p>
                     Each assertion checks two things:
@@ -162,7 +160,6 @@ page.route("**/api/loyalty/rewards/charges/summary*", handler)</code></pre>
     </section>
 </main>
 
-</article>
 <div class="article-bottom-nav">
     <a class="article-link" href="../index.html#featured">← Back to Featured Articles</a>
 </div>
