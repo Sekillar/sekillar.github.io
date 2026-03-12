@@ -331,6 +331,16 @@ a {
     margin-bottom: 6px;
 }
 
+.blog-article li::marker {
+    color: #d6b06f;
+}
+
+.blog-article p code {
+    background: #1a1a1a;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
 .article-container {
     max-width: 760px;
     margin: 0 auto;
