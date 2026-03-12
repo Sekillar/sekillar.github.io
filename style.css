@@ -372,9 +372,13 @@ a {
     font-size: 14px;
     line-height: 1.6;
 }
-
 .article-bottom-nav {
-    margin-top: 48px;
+    margin-top: 50px;
     padding-top: 24px;
     border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+}
+
+.article-bottom-nav a:hover {
+    opacity: 1;
 }
