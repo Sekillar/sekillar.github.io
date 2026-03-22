@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A practical QA article about how to work and test when requirements are missing: implicit requirements, closed questions, state transition tables, and CRUD matrices.">
+    <meta name="author" content="Olga Silanova">
+    <meta name="keywords" content="QA, software testing, requirements analysis, implicit requirements, state transition testing, CRUD matrix, QA process, test design">
+    <meta property="og:title" content="When There Are No Requirements, But You Still Have to Test">
+    <meta property="og:description" content="A practical QA article on how to uncover missing requirements through closed questions, visualized scenarios, and CRUD tables.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://sekillar.github.io/posts/when-there-are-no-requirements.html">
+    <meta property="og:site_name" content="Olga’s QA Lab">
+    <meta property="article:published_time" content="2026-03-22">
+    <meta property="article:author" content="Olga Silanova">
+    <meta property="article:tag" content="QA">
+    <meta property="article:tag" content="Requirements Analysis">
+    <meta property="article:tag" content="Test Design">
+    <title>When There Are No Requirements, But You Still Have to Test | Olga’s QA Lab</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo"><a href="../index.html">Olga’s QA Lab</a></div>
+        <nav class="nav">
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#featured">Featured Articles</a>
+            <a href="https://www.linkedin.com/in/olgathebughunter/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Sekillar" target="_blank">GitHub</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="article-page">
+        <div class="container article-container">
+
+            <p class="article-meta">March 22, 2026 · 7 min read · QA · Requirements Analysis · Test Design</p>
+            <h1>When There Are No Requirements, But You Still Have to Test</h1>
+
+            <p class="article-lead">
+                Every QA engineer has probably seen this: you come to work, grab a coffee, open Jira — and there is a task assigned to testing with nothing but a title. Something like “Improve authorization”.
+            </p>
+
+            <article class="blog-article">
+                <h2>Why There Are No Requirements (And Why It’s Normal)</h2>
+                <p>
+                    In reality, requirements rarely meet all the ideal criteria at once. They are not always complete, measurable, traceable, and testable.
+                </p>
+
+                <p>
+                    Much more often, the business request sounds more like “make it work.” Then the Product Owner passes it to analysts, analysts refine it, developers implement it, and somewhere along the way the original intent becomes blurred.
+                </p>
+
+                <p>
+                    As a result, some important details are missed, and additional requirements appear only during testing.
+                </p>
+
+                <h2>Explicit vs Implicit Requirements</h2>
+                <p>
+                    I divide all requirements that reach me after passing through PO → analyst → developer into two groups: <strong>explicit</strong> and <strong>implicit</strong>.
+                </p>
+
+                <p>
+                    A task description or a Confluence page is an explicit requirement. But when you dig into the product and notice that some behavior is not described, it does not mean there are no requirements. In 99% of cases, the business does have expectations — they are just implicit for the development team.
+                </p>
+
+                <p>
+                    And that is exactly when you start going around and asking questions. So if someone went into IT hoping to avoid communication, this is the moment when that dream ends.
+                </p>
+
+                <h2>Rule #1: Ask Closed Questions</h2>
+                <p>
+                    The most important communication rule I have learned is simple: ask closed questions.
+                </p>
+
+                <p>
+                    Otherwise, when trying to clarify one tiny detail, you may end up listening to a long and undoubtedly interesting lecture about the entire product.
+                </p>
+
+                <p>
+                    You do not need that. You need quick answers.
+                </p>
+
+                <p>
+                    Instead of asking:
+                </p>
+
+                <pre><code>Where does a post go after creation?</code></pre>
+
+                <p>
+                    ask:
+                </p>
+
+                <pre><code>Does the post go to the user feed, the community feed, or both?</code></pre>
+
+                <p>
+                    The difference matters.
+                </p>
+
+                <h2>Rule #2: Show, Don’t Tell</h2>
+                <p>
+                    The second rule is to visualize your questions.
+                </p>
+
+                <p>
+                    Imagine jumping into a call and asking something like this:
+                </p>
+
+                <pre><code>What happens if we create a $500 order, it automatically generates a post,
+20 users report it, and someone wants it removed from publication?
+And what if there is no post, but someone still wants to complain?</code></pre>
+
+                <p>
+                    This kind of conversation quickly turns chaotic.
+                </p>
+
+                <p>
+                    For situations like this, I build state transition tables or diagrams with all possible — and even improbable — events.
+                </p>
+
+                <p>
+                    Once you map the scenario visually, patterns start repeating. The same questions appear again and again across different flows. In the end, instead of asking ten separate questions, you ask one precise question and save time for both yourself and your colleague.
+                </p>
+
+                <h2>Rule #3: Full Coverage</h2>
+                <p>
+                    The third rule grows out of the first one, but this time instead of diagrams, I use CRUD tables.
+                </p>
+
+                <p>
+                    This approach is especially useful for backend operations. Of course, developers usually cover the most critical scenarios: users without permission will not be allowed to perform restricted actions, and APIs are expected to be reasonably protected from obvious issues.
+                </p>
+
+                <p>
+                    But covering every edge case is not always their job. That is why CRUD tables help not only during testing, but sometimes even during development.
+                </p>
+
+                <p>
+                    Sometimes, before testing starts, I send a backend developer a checklist and ask:
+                </p>
+
+                <pre><code>Do you think all of this is already covered, or should we add more cases before I start testing?</code></pre>
+
+                <p>
+                    After a few conversations like that, backend developers start tagging me much earlier — even at the task definition stage — and ask for a similar checklist in advance.
+                </p>
+
+                <h2>Rule #4: Don’t Take Over Someone Else’s Job</h2>
+                <p>
+                    These are the three patterns I developed for working when requirements are missing.
+                </p>
+
+                <p>
+                    One more thing I want to add: requirement formalization is usually better left to analysts.
+                </p>
+
+                <p>
+                    This is not about QA being above writing requirements. It is about ownership and visibility. Analysts are usually responsible for specific features, and the owner of feature X would probably like to know what is happening to it.
+                </p>
+
+                <p>
+                    If requirements start being rewritten outside that process, unnecessary chaos enters the team — exactly the thing we were trying to avoid with the first three steps.
+                </p>
+
+                <h2>Final Thoughts</h2>
+                <p>
+                    If there are no requirements, it is not a disaster. It is a normal part of the job.
+                </p>
+
+                <p>
+                    The question is not “what do we do without requirements?” The question is “how do we uncover them?”
+                </p>
+
+                <h2>Summary</h2>
+                <ul>
+                    <li>Ask closed questions</li>
+                    <li>Visualize scenarios</li>
+                    <li>Cover edge cases</li>
+                    <li>Do not take over the analyst’s role</li>
+                </ul>
+            </article>
+
+        </div>
+    </section>
+</main>
+
+<div class="article-bottom-nav">
+    <a class="article-link" href="../index.html#featured">← Back to Featured Articles</a>
+</div>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>© 2026 Olga’s QA Lab</p>
+        <div class="footer-links">
+            <a href="mailto:olgasilanova@gmail.com">olgasilanova@gmail.com</a>
+            <a href="https://www.linkedin.com/in/olgathebughunter/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Sekillar" target="_blank">GitHub</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
