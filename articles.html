@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles | Olga’s QA Lab</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">Olga’s QA Lab</a>
+        </div>
+        <nav class="nav">
+            <a href="index.html#about">About</a>
+            <a href="index.html#featured">Featured Articles</a>
+            <a href="https://www.linkedin.com/in/olgathebughunter/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/Sekillar" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="featured">
+        <div class="container">
+            <h1 id="articles-title">Articles</h1>
+            <p class="section-text" id="articles-description">
+                A collection of notes on testing, automation, and QA practices.
+            </p>
+
+            <div class="articles-grid" id="articles-list"></div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>© 2026 Olga’s QA Lab</p>
+
+        <div class="footer-links">
+            <a href="mailto:olgasilanova@gmail.com">olgasilanova@gmail.com</a>
+            <a href="https://www.linkedin.com/in/olgathebughunter/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/Sekillar" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+const articles = [
+    {
+        title: "Playwright Smoke Tests for CRM",
+        tag: "Playwright",
+        category: "ui-automation",
+        description: "A practical look at building a small smoke suite to verify that the CRM is alive and core pages respond correctly.",
+        link: "#"
+    },
+    {
+        title: "Mocking API Responses in Playwright",
+        tag: "Mocking",
+        category: "ui-automation",
+        description: "A simple way to test UI states by replacing backend responses and validating what users actually see on the page.",
+        link: "posts/mocking-api-responses-playwright.html"
+    },
+    {
+        title: "When There Are No Requirements, But You Still Have to Test",
+        tag: "QA",
+        category: "quality-practices",
+        description: "A practical guide on how to work without clear requirements using closed questions, state transition tables, and CRUD matrices to uncover hidden logic.",
+        link: "posts/no_requirements_but_have_to_test.html"
+    },
+    {
+        title: "Running UI Tests in CI Pipelines",
+        tag: "CI/CD",
+        category: "ci-cd",
+        description: "Practical notes on integrating UI checks into CI pipelines without making them slow, noisy, or difficult to maintain.",
+        link: "#"
+    }
+];
+
+const categoryMeta = {
+    "ui-automation": {
+        title: "UI Automation Articles",
+        description: "Notes on UI testing, Playwright, smoke coverage, and maintainable test design."
+    },
+    "ci-cd": {
+        title: "CI/CD Articles",
+        description: "Thoughts on pipelines, automated checks, and making test execution reliable in daily work."
+    },
+    "quality-practices": {
+        title: "Quality Practices Articles",
+        description: "Reflections on testing strategy, debugging, practical QA habits, and ways to improve quality in real teams."
+    }
+};
+
+const params = new URLSearchParams(window.location.search);
+const category = params.get("category");
+
+const titleEl = document.getElementById("articles-title");
+const descriptionEl = document.getElementById("articles-description");
+const listEl = document.getElementById("articles-list");
+
+if (categoryMeta[category]) {
+    titleEl.textContent = categoryMeta[category].title;
+    descriptionEl.textContent = categoryMeta[category].description;
+} else {
+    titleEl.textContent = "All Articles";
+    descriptionEl.textContent = "A collection of notes on testing, automation, and QA practices.";
+}
+
+const filteredArticles = category
+    ? articles.filter(article => article.category === category)
+    : articles;
+
+if (filteredArticles.length === 0) {
+    listEl.innerHTML = "<p>No articles in this category yet.</p>";
+} else {
+    listEl.innerHTML = filteredArticles.map(article => `
+        <article class="article-card">
+            <p class="article-tag">${article.tag}</p>
+            <h3>${article.title}</h3>
+            <p>${article.description}</p>
+            <a class="article-link" href="${article.link}">
+                ${article.link === "#" ? "Coming soon" : "Read article"}
+            </a>
+        </article>
+    `).join("");
+}
+</script>
+
+</body>
+</html>
